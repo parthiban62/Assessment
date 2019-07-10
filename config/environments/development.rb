@@ -35,7 +35,7 @@ Rails.application.configure do
 
   config.action_mailer.perform_deliveries = true
 
-  config.action_mailer.default_url_options = { host: 'https://assessment-test-survey.herokuapp.com' }
+  config.action_mailer.default_url_options = { host: 'http://assessment-test-survey.herokuapp.com' }
 
   config.action_mailer.smtp_settings = {
     :openssl_verify_mode => OpenSSL::SSL::VERIFY_NONE,      
@@ -44,7 +44,7 @@ Rails.application.configure do
     :password => ENV["SENDGRID_PASSWORD"],
     :domain => 'heroku.com',
     :address => 'smtp.sendgrid.net',
-    :port => 465,
+    :port => 25,
     :authentication => :plain,
     :enable_starttls_auto => true    
   }
