@@ -17,7 +17,7 @@ class SharesController < ApplicationController
 		else
 			if @share.save
 				flash[:notice] = "survey shared successfully"
-				SurveyMailer.share_survey(@survey, @share.email).deliver_later
+				SurveyMailer.share_survey(@survey, @share.email).deliver!
 				redirect_to survey_shares_path(@survey)
 			else
 				render :new
