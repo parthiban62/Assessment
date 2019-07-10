@@ -13,9 +13,9 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
-//= require_tree .
 //= require jquery
 //= require ckeditor/init
+//= require_tree .
 
 $(document).ready(function(){
 	function remove_fields(link) {
