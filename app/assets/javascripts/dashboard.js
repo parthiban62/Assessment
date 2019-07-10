@@ -11,9 +11,10 @@
 // about supported directives.
 
 //= require jquery
+//= require 'dashboard/jquery-ui.min.js'
 //= require 'dashboard/bootstrap.min.js'
 //= require 'dashboard/jquery.scrollTo.min.js'
 //= require 'dashboard/jquery.nicescroll.js'
 //= require 'dashboard/dataTables.bootstrap.min.js'
-//= require 'dashboard/jquery-ui.min.js'
+
 
