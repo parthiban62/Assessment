@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :surveys do
   	member do
   		get :participants
+      post :add_questions
   	end
     resources :shares
   	resources :questions

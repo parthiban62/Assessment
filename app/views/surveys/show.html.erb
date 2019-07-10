@@ -46,18 +46,57 @@
 				<div class="modal-header">
 					<h4 class="modal-title">Add Question</h4>
 				</div>
-				<div class="modal-body">
-					<%= form_for([@survey, @question], :html => {class: 'form-horizontal style-form', remote: true}) do |f| %>
-						<%= render 'shared/question_fields', f: f %>
-						<%#= link_to_add_fields 'Add Question', f, :questions, 'form-control' %>
-					
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-theme02 close-popup" data-dismiss="modal">Close</button>
-					<button type="submit" class="btn btn-theme02">Save</button>
-					<% end %>
-				</div>
+                <a href="javascript:void(0);"" onclick="toggleContainer();">Drag and Drop Question</a> / <a href="javascript:void(0);"" onclick="toggleContainer();">Type & Add Question</a>
+                
+                <div class= "dragDropQuestion" style="display:none;">
+                    <div class="container" >
+                        <div class="draggable-container">
+                        <% @questions.each do |question|%>
+                          <p class="draggable" id="<%= question.id%>"><%= question.question_content%></p>
+                          <br/>
+                        <% end %>
+                        </div>
+                        <div class="dropzone-container">
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-theme02 close-popup" data-dismiss="modal">Close</button>
+                    </div>
+                    </div>
+                </div>
+                <div class="questionForm">
+    				<div class="modal-body">
+    					<%= form_for([@survey, @question], :html => {class: 'form-horizontal style-form', remote: true}) do |f| %>
+    						<%= render 'shared/question_fields', f: f %>
+    					
+    				</div>
+    				<div class="modal-footer">
+    					<button type="button" class="btn btn-theme02 close-popup" data-dismiss="modal">Close</button>
+    					<button type="submit" class="btn btn-theme02">Save</button>
+    					<% end %>
+    				</div>
+                </div>
 			</div>
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript">
+    function toggleContainer(){
+        $(".questionForm").toggle();
+        $(".dragDropQuestion").toggle();
+    }
+    $(".draggable").draggable();
+    $(".dropzone-container" ).droppable({
+        drop: function( event, ui ) {
+            $.ajax({
+                beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+                url: '/surveys/<%= @survey.id%>/add_questions',
+                method: 'post',
+                data: {question_id: $(ui.draggable).attr("id")},
+                success: function(response){
+
+                }
+            });
+        }
+    });
+</script>

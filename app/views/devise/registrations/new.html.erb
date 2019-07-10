@@ -3,6 +3,10 @@
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name),:html => {class: 'form-login'}) do |f| %>
           <h2 class="form-login-heading">signup now</h2>
           <div class="login-wrap">
+            <%= f.text_field :firstname, autofocus: true, :class => "form-control", :placeholder => "First Name", required: true %>
+            <br/>
+             <%= f.text_field :lastname, :class => "form-control", :placeholder => "Last Name", required: true %>
+            <br/>
             <%= f.email_field :email, autofocus: true, :class => "form-control", :placeholder => "Email Address", required: true %>
             <br/>
             <%= f.password_field :password, autocomplete: "off", :id => "form-last-name", :class => "form-control", :placeholder => "Password...", required: true %>

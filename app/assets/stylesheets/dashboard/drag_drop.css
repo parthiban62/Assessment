@@ -1,0 +1,74 @@
+.container {
+  max-width: 500px;
+  padding: 15px 15px 0 15px;
+  display: flex;
+}
+
+.draggable-container {
+  /*margin-top: 15px;*/
+  width: 120px;
+  height: 85px;
+  background: #cddc39;
+  border-radius: 8px;
+  text-align: center;
+  cursor: pointer;
+  cursor: grab;
+  cursor: -webkit-grab;
+  float: left;
+  width: 50%;
+  height: 600px;
+  margin-right: 10px;
+}
+
+.draggable-container p {
+  padding-top: 10px;
+  margin: 0;
+  font-weight: bold;
+}
+
+.draggable-container input {
+  width: 90px;
+}
+
+.dropzone-container {
+  border: 1px solid;
+  float: right;
+  height: 600px;
+  width: 50%;
+}
+
+.dropzone {
+  margin-top: 15px;
+  width: 130px;
+  height: 120px;
+  background: #ffc107;
+  border-radius: 8px;
+  text-align: center;
+
+}
+
+.dropzone p {
+  margin: 0;
+  padding-top: 10px;
+  font-weight: bold;
+}
+
+.dnd-dragging {
+  opacity: 0.7;
+}
+
+.dnd-over {
+  background-color: #ffe607;
+}
+
+.dnd-invalid {
+  background-color: grey;
+  cursor: not-allowed;
+}
+
+.dnd-dragging,
+.dnd-drag-occurring {
+  cursor: default;
+  cursor: grabbing;
+  cursor: -webkit-grabbing;
+}

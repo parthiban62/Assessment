@@ -1,0 +1,3 @@
+$(".draggable-container p#"+'<%= @question.id%>').removeClass("draggable");
+$(".questionDetails").html("<%= escape_javascript render(partial:  'question_details', locals: {survey: @survey }) %>");
+alert("Question Added to Survey");

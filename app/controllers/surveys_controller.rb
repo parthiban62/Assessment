@@ -41,6 +41,7 @@ class SurveysController < ApplicationController
 
 	def show
 		@question = Question.new
+		@questions = @user.surveys.map(&:questions).flatten
 	end
 
 	def destroy
@@ -55,6 +56,14 @@ class SurveysController < ApplicationController
 	def participants
 		@survey = Survey.find_by_id(params[:id])
 		@responses = @survey.responses
+	end
+
+	def add_questions
+		@question = Question.find_by_id(params[:id])
+		if @question.present?
+			@survey.questions << @question
+			respond_to :js
+		end
 	end
 
 	private

@@ -16,4 +16,5 @@
 //= require 'dashboard/jquery.scrollTo.min.js'
 //= require 'dashboard/jquery.nicescroll.js'
 //= require 'dashboard/dataTables.bootstrap.min.js'
+//= require 'dashboard/jquery-ui.min.js'
 
