@@ -1,0 +1,6 @@
+<li class="mt">
+  <a class="<%= session[:current] == 'surveys' ? 'active' : '' %>" href="<%= surveys_path %>" ><i class="fa fa-hdd-o"></i><span>View Created Surveys</span></a>
+</li>
+<li class="mt">
+  <a class="<%= session[:current] == 'profile' ? 'active' : '' %>" href="<%= edit_registration_path(current_user) %>"><i class="fa fa-desktop"></i><span>View Profile</span></a>
+</li>

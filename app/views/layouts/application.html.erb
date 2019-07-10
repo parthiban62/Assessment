@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Assessment</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <section id="container">
+      <%= render :partial => 'layouts/dashboard_header' %>
+      <%= render :partial => 'layouts/dashboard_sidebar' %>
+    </section>
+    <section id="main-content">
+        <section class="wrapper">
+          <%= yield :layout %>
+        </section>
+    </section>
+  </body>
+</html>
+
+

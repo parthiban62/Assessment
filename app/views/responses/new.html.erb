@@ -1,0 +1,67 @@
+<%= form_for([@survey, @response], :html => {class: 'form-horizontal style-form'}) do |f| %>
+<div class="row questionDetails">
+    <div class="row mt">
+        <div class="col-lg-12">
+            <div class="form-panel">
+            	<% @survey.questions.each do |question|%>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-lg-12"><label class="italic"><strong>Question no <%= "#{question.question_no}" %></strong></label></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <label class="italic"><strong><%= question.question_content.html_safe rescue nil %></strong></label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <section class="task-panel tasks-widget">
+                                    <div class="panel-heading">
+                                        <div class="pull-left"><h5><i class="fa fa-tasks"></i>Options</h5></div>
+                                        <br>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="task-content">
+                                            <ul class="task-list">
+                                                <% if question.question_type.name.eql?("Text") %>
+                                                <li>
+                                                	<%= text_field_tag "question[#{question.id}]", ""%>
+                                                </li>
+                                                <% elsif question.question_type.name.eql?("TextArea")%>
+                                                <li>
+                                                	<%= text_area_tag "question[#{question.id}]", ""%>
+                                                </li>
+                                                <% elsif question.question_type.name.eql?("Single Choice")%>
+                                                <% question.options.each do |option|%>
+													<li><%= radio_button_tag "question[#{question.id}]", option.id%> <%= option.option_content%></li>
+												<%end%>
+                                                <% elsif question.question_type.name.eql?("Multiple Choice")%>
+	                                                <% question.options.each do |option|%>
+														<li><%= check_box_tag "question[#{question.id}][]", option.id%> <%= option.option_content%></li>
+													<%end%>
+                                                <% elsif question.question_type.name.eql?("Listing")%>
+                                                	<li><%= select_tag "question[#{question.id}]", options_from_collection_for_select(question.options, :id, :option_content),prompt: "Select any one"%></li>
+                                              <% end %>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <div class=" col-lg-12">
+        <label class="col-sm-2 col-sm-2 control-label"></label>
+        <div class="col-sm-5">
+          <button class="btn btn-theme02 btn-block" type="submit">Submit</button>
+        </div>
+    </div>
+</div>
+<% end %>

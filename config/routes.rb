@@ -1,0 +1,17 @@
+Rails.application.routes.draw do
+  devise_for :users
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  root to: "home#index"
+
+  resources :surveys do
+  	member do
+  		get :share_survey
+  		get :participants
+  	end
+  	collection do
+  		post :survey_via_email
+  	end
+  	resources :questions
+  	resources :responses
+  end
+end

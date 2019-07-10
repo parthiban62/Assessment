@@ -1,0 +1,5 @@
+<% if @question.errors.present? %>
+<% else %>
+$(".questionDetails").html("<%= escape_javascript render(partial:  'surveys/question_details', locals: {survey: @survey }) %>");
+$(".close-popup").click();
+<% end %>

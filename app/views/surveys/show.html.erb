@@ -1,0 +1,63 @@
+<div class="row mt">
+    <div class="col-lg-12">
+        <div class="form-panel">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h4 class="mb"><i class="fa fa-file-pdf-o"></i> <%= "#{@survey.name}" %></h4>
+                </div>
+                <div class="col-lg-2 pull-right">
+                    <a class="btn btn-theme02" href="<%= edit_survey_path(@survey) %>">Edit Survey</a>
+                </div>
+                <div class="col-lg-2 pull-right">
+                    <button type="button" class="btn btn-theme02" data-toggle="modal" data-target="#myModal">Add Question</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <label class="col-sm-2 control-label"><strong>Survey Name</strong></label>
+                    <label class="control-label"><%= "#{@survey.name.html_safe}" %></label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <label class="col-sm-2 control-label"><strong>No Of Questions</strong></label>
+                    <label class="control-label"><%= @survey.questions.size %></label>
+                </div>
+            </div>
+            <div class="row">
+            	<% @survey.questions.group_by(&:question_type).each do |question_type, questions|%>
+            	<div class="col-lg-12">
+                    <label class="col-sm-2 control-label"><strong><%= question_type.name%></strong></label>
+                    <label class="control-label"><%= questions.size %></label>
+                </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%= render partial: 'question_details', locals: {survey: @survey}%>
+
+
+<div id="myModal" class="modal fade row" role="dialog">
+	<div class="col-lg-12">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Add Question</h4>
+				</div>
+				<div class="modal-body">
+					<%= form_for([@survey, @question], :html => {class: 'form-horizontal style-form', remote: true}) do |f| %>
+						<%= render 'shared/question_fields', f: f %>
+						<%#= link_to_add_fields 'Add Question', f, :questions, 'form-control' %>
+					
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-theme02 close-popup" data-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-theme02">Save</button>
+					<% end %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

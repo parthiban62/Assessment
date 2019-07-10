@@ -1,0 +1,14 @@
+<div id="login-page">
+    <div class="container">
+        <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post,class: 'form-login' }) do |f| %>
+          <h2 class="form-login-heading">forgot your password</h2>
+          <div class="login-wrap">
+            <%= f.email_field :email, autofocus: true, :id => "form-email", :class => "form-control", :placeholder => "Email Address", required: true %>
+            <br/>
+            <button class="btn btn-theme btn-block" href="#" type="submit"><i class="fa fa-lock"></i> Send me reset password instructions</button>
+            <hr>
+            <%= render "devise/shared/links" %>
+          </div>
+        <% end %>
+    </div>
+</div>

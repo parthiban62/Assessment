@@ -1,0 +1,29 @@
+<!--sidebar start-->
+<aside>
+    <div id="sidebar"  class="nav-collapse ">
+        <% if current_user.present? %>
+        <ul class="sidebar-menu" id="nav-accordion">
+            <p class="centered"><a href="#"><img src="/assets/dashboard/ui-sam.jpg" class="img-circle" width="60"></a></p>
+            <h5 class="centered"><%= current_user.firstname %></h5>
+            <h6 class="centered" style="color: #ffffff;"><%= current_user.email %></h6>
+            <li><%= link_to('Logout', destroy_user_session_path, method: :delete, class: "logout") %></li>
+                <li class="mt">
+                    <a class="<%= session[:current] == 'dashboard' ? 'active' : '' %>" href="<%= root_path %>"><i class="fa fa-dashboard"></i><span>Dashboard</span></a>
+                </li>
+                <%= render partial: 'layouts/user_menu' %>
+        </ul>
+        <% else %>
+            <ul class="sidebar-menu" id="nav-accordion"><
+                <li class="mt">
+                    <a class="<%= session[:current] == 'dashboard' ? 'active' : '' %>" href="<%= root_path %>"><i class="fa fa-dashboard"></i><span>Home</span></a>
+                </li>
+                <li class="mt">
+                    <a class="<%= session[:current] == 'login' ? 'active' : '' %>" href="<%= new_user_session_path %>"><i class="fa fa-dashboard"></i><span>Login</span></a>
+                </li>
+                <li class="mt">
+                    <a class="<%= session[:current] == 'dashboard' ? 'active' : '' %>" href="<%= new_user_registration_path %>"><i class="fa fa-dashboard"></i><span>Create Survey</span></a>
+                </li>
+            </ul>
+        <% end %>
+    </div>
+</aside>
