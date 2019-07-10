@@ -2,7 +2,7 @@
     <div class="col-lg-8">
         <label class="col-sm-2 col-sm-2 control-label">Question No:</label>
         <div class="col-sm-10">
-          <%= f.number_field :question_no, class:"form-control"%>
+          <%= f.number_field :question_no, class:"form-control", required: true%>
         </div>
     </div>
 </div>
@@ -10,7 +10,7 @@
     <div class="col-lg-8">
         <label class="col-sm-2 col-sm-2 control-label">Question Type:</label>
         <div class="col-sm-10">
-          <%= f.select :question_type_id, options_from_collection_for_select(@question_types, :id, :name), prompt: "select a question type", class:"form-control question_type_id", onchange: "checkOption(this);"%>
+          <%= f.select :question_type_id, options_from_collection_for_select(@question_types, :id, :name), prompt: "select a question type", class:"form-control question_type_id", onchange: "checkOption(this);", required: true%>
         </div>
     </div>
 </div>
@@ -18,7 +18,8 @@
     <div class="col-lg-8">
         <label class="col-sm-2 col-sm-2 control-label">Question:</label>
         <div class="col-sm-10">
-          <%= f.cktext_area :question_content,size: "60x12", class:"form-control"%>
+          <%#= f.cktext_area :question_content,size: "60x12", class:"form-control"%>
+          <%= f.text_area :question_content,size: "60x12", class:"form-control", required: true%>
         </div>
     </div>
 </div>
