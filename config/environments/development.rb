@@ -42,9 +42,9 @@ Rails.application.configure do
     :password => ENV["SENDGRID_PASSWORD"],
     :domain => 'heroku.com',
     :address => 'smtp.sendgrid.net',
-    :port => 465,
+    :port => 587,
     :authentication => :plain,
-    :enable_starttls_auto => true
+    :enable_starttls_auto => true    
   }
 
   # Don't care if the mailer can't send.
