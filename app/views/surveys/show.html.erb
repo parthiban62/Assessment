@@ -9,7 +9,7 @@
                     <a class="btn btn-theme02" href="<%= edit_survey_path(@survey) %>">Edit Survey</a>
                 </div>
                 <div class="col-lg-2 pull-right">
-                    <button type="button" class="btn btn-theme02" data-toggle="modal" data-target="#myModal">Add Question</button>
+                    <button type="button" class="btn btn-theme02" onclick="openPopup();">Add Question</button>
                 </div>
             </div>
             <div class="row">
@@ -98,6 +98,10 @@
     function toggleContainer(){
         $(".questionForm").toggle();
         $(".dragDropQuestion").toggle();
+    }
+    function openPopup(){
+        $("form#new_question")[0].reset();
+        $("#myModal").modal();
     }
     $(".draggable").draggable();
     $(".dropzone-container" ).droppable({
