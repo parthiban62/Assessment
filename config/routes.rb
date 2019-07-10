@@ -5,12 +5,9 @@ Rails.application.routes.draw do
 
   resources :surveys do
   	member do
-  		get :share_survey
   		get :participants
   	end
-  	collection do
-  		post :survey_via_email
-  	end
+    resources :shares
   	resources :questions
   	resources :responses
   end

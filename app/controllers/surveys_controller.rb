@@ -1,6 +1,9 @@
 class SurveysController < ApplicationController
 
 	before_action :set_question_types
+	before_action :set_survey, except: [:index,:new,:create,:participants]
+
+	before_action :check_if_user_is_admin, only: [:participants]
 
 	def index
 		@surveys = current_user.is_admin? ? Survey.all : @user.surveys
@@ -24,11 +27,9 @@ class SurveysController < ApplicationController
 	end
 
 	def edit
-		@survey = @user.surveys.find_by_id(params[:id])
 	end
 
 	def update
-		@survey = @user.surveys.find_by_id(params[:id])
 		if @survey.update_attributes(survey_params)
 			flash[:notice] = 'survey created successfully'
 			redirect_to surveys_path
@@ -39,12 +40,10 @@ class SurveysController < ApplicationController
 	end
 
 	def show
-		@survey = @user.surveys.find_by_id(params[:id])
 		@question = Question.new
 	end
 
 	def destroy
-		@survey = @user.surveys.find_by_id(params[:id])
 		if @survey.destroy
 			flash[:notice] = "Survey deleted successfully"
 		else
@@ -53,15 +52,9 @@ class SurveysController < ApplicationController
 		redirect_to surveys_path
 	end
 
-	def share_survey
-		@survey = @user.surveys.find_by_id(params[:id])
-	end
-
-	def survey_via_email
-		SurveyMailer.share_surveyparams[:email]
-	end
-
 	def participants
+		@survey = Survey.find_by_id(params[:id])
+		@responses = @survey.responses
 	end
 
 	private
@@ -71,5 +64,13 @@ class SurveysController < ApplicationController
 
 	def set_question_types
 		@question_types = QuestionType.all
+	end
+
+	def set_survey
+		@survey = @user.surveys.find_by_id(params[:id])
+	end
+
+	def check_if_user_is_admin
+		redirect_to root_path unless current_user.is_admin?
 	end
 end

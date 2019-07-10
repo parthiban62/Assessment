@@ -11,7 +11,6 @@ class ResponsesController < ApplicationController
 		else
 			@response = current_user.responses.build
 		end
-
 	end
 
 	def create
@@ -25,7 +24,7 @@ class ResponsesController < ApplicationController
 	end
 
 	def show
-		@response = @survey.responses.find_by_id_and_user_id(params[:id], current_user.id)
+		@response = @survey.responses.find_by_id(params[:id])
 		@answers = @response.answers
 	end
 

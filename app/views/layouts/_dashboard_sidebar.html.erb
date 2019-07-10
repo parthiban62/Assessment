@@ -7,10 +7,14 @@
             <h5 class="centered"><%= current_user.firstname %></h5>
             <h6 class="centered" style="color: #ffffff;"><%= current_user.email %></h6>
             <li><%= link_to('Logout', destroy_user_session_path, method: :delete, class: "logout") %></li>
-                <li class="mt">
-                    <a class="<%= session[:current] == 'dashboard' ? 'active' : '' %>" href="<%= root_path %>"><i class="fa fa-dashboard"></i><span>Dashboard</span></a>
-                </li>
+            <li class="mt">
+                <a class="<%= session[:current] == 'dashboard' ? 'active' : '' %>" href="<%= root_path %>"><i class="fa fa-dashboard"></i><span>Dashboard</span></a>
+            </li>
+            <% if  current_user.is_admin? %>
+                <%= render partial: 'layouts/admin_menu' %>
+            <% else %>
                 <%= render partial: 'layouts/user_menu' %>
+            <% end %>
         </ul>
         <% else %>
             <ul class="sidebar-menu" id="nav-accordion"><

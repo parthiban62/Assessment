@@ -16,6 +16,8 @@
     </section>
     <section id="main-content">
         <section class="wrapper">
+          <%= flash[:notice]%>
+          <%= flash[:error]%>
           <%= yield :layout %>
         </section>
     </section>

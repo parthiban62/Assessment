@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
 	def index
-		@participated_surveys = current_user.responses
+		@surveys = current_user.is_admin? ? Survey.all : current_user.responses
 	end
 end
