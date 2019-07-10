@@ -10,8 +10,6 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 
-//= require jquery
-//= require ckeditor/init
 //= require 'dashboard/bootstrap.min.js'
 //= require 'dashboard/jquery.scrollTo.min.js'
 //= require 'dashboard/jquery.nicescroll.js'
