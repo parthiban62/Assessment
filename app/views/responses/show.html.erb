@@ -23,25 +23,28 @@
                                     <div class="panel-body">
                                         <div class="task-content">
                                             <ul class="task-list">
+                                                <% answer = @answers.find_by_question_id(question.id).answer%>
                                                 <% if question.question_type.name.eql?("Text") %>
                                                 <li>
-                                                	<%= text_field_tag "question[#{question.id}]", @answers.find_by_question_id(question.id).answer, disabled: true%>
+                                                	<%= text_field_tag "question[#{question.id}]",answer, disabled: true%>
                                                 </li>
                                                 <% elsif question.question_type.name.eql?("TextArea")%>
                                                 <li>
-                                                	<%= text_area_tag "question[#{question.id}]", @answers.find_by_question_id(question.id).answer, disabled: true%>
+                                                	<%= text_area_tag "question[#{question.id}]",answer, disabled: true%>
                                                 </li>
                                                 <% elsif question.question_type.name.eql?("Single Choice")%>
                                                 <% question.options.each do |option|%>
-													<li><%= radio_button_tag "question[#{question.id}]", option.id, checked: (@answers.find_by_question_id(question.id).answer == option.id)%> <%= option.option_content%></li>
+                                                    <% selected = (answer.to_i == option.id) %>
+													<li><%= radio_button_tag "question[#{question.id}]", option.id,selected %> <%= option.option_content%></li>
 												<%end%>
                                                 <% elsif question.question_type.name.eql?("Multiple Choice")%>
-                                                    <% answer = @answers.find_by_question_id(question.id).answer.split(",") %>
+                                                    <% answers = answer.split(",") %>
 	                                                <% question.options.each do |option|%>
-														<li><%= check_box_tag "question[#{question.id}][]", option.id, checked: (answer.include?(option.id))%> <%= option.option_content%></li>
+                                                        <% selected = answers.include?(option.id.to_s) %>
+														<li><%= check_box_tag "question[#{question.id}][]", option.id, selected%> <%= option.option_content%></li>
 													<%end%>
                                                 <% elsif question.question_type.name.eql?("Listing")%>
-                                                	<li><%= select_tag "question[#{question.id}]", options_from_collection_for_select(question.options, :id, :option_content, selected: @answers.find_by_question_id(question.id).answer),prompt: "Select any one"%></li>
+                                                	<li><%= select_tag "question[#{question.id}]", options_from_collection_for_select(question.options, :id, :option_content, selected: answer),prompt: "Select any one"%></li>
                                               <% end %>
                                             </ul>
                                         </div>
