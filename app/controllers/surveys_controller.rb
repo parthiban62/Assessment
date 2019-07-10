@@ -60,10 +60,13 @@ class SurveysController < ApplicationController
 
 	def add_questions
 		@question = Question.find_by_id(params[:id])
-		if @question.present?
+		@question_added_already = false
+		if @survey.questions.where(id: @question.id).present?
+			@question_added_already = true
+		else
 			@survey.questions << @question
-			respond_to :js
 		end
+		respond_to :js
 	end
 
 	private
