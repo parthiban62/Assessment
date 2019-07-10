@@ -38,13 +38,13 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'https://assessment-test-survey.herokuapp.com' }
 
   config.action_mailer.smtp_settings = {
-    address: "smtp.gmail.com",
-    port: 25,
-    domain: "gmail.com",
-    authentication: "plain",
-    enable_starttls_auto: true,
-    user_name: ENV["USERNAME"], 
-    password: ENV["PASSWORD"]
+    :user_name => ENV["SENDGRID_USERNAME"],
+    :password => ENV["SENDGRID_PASSWORD"],
+    :domain => 'heroku.com',
+    :address => 'smtp.sendgrid.net',
+    :port => 587,
+    :authentication => :plain,
+    :enable_starttls_auto => true
   }
 
   # Don't care if the mailer can't send.
