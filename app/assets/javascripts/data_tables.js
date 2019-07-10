@@ -1,2 +1,2 @@
-//= require 'jquery.dataTables.min.js'
-//= require 'dataTables.bootstrap.min.js'
+//= require 'dashboard/jquery.dataTables.min.js'
+//= require 'dashboard/dataTables.bootstrap.min.js'
