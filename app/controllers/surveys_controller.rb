@@ -32,7 +32,13 @@ class SurveysController < ApplicationController
 
 	def update
 		if @survey.update_attributes(survey_params)
-			@user.questions << @survey.questions
+			byebug
+			@existing_questions = @user.questions
+			if @existing_questions.present?
+				@user.questions << @survey.questions.where.not(id: @existing_questions.pluck(:id))
+			else
+				@user.questions << @survey.questions
+			end
 			flash[:notice] = 'survey created successfully'
 			redirect_to surveys_path
 		else
@@ -74,7 +80,7 @@ class SurveysController < ApplicationController
 
 	private
 	def survey_params
-		params.require(:survey).permit(:id, :name,questions_attributes: [:id, :question_no, :question_type_id, :question_content, :_destroy, options_attributes: [:id, :option_content, :_destroy]])
+		params.require(:survey).permit(:id, :name,questions_attributes: [:id, :question_no, :question_type_id, :question_content, :_destroy, options_attributes: [:id, :option_content, :_destroy],users_attributes: [:id]])
 	end
 
 	def set_question_types
