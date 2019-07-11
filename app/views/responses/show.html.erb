@@ -23,8 +23,9 @@
                                     <div class="panel-body">
                                         <div class="task-content">
                                             <ul class="task-list">
-                                                <% answer = @answers[question.id]%>
+                                                <% answer = @answers.find_by_question_id(question.id)%>
                                                 <% if question.question_type.name.eql?("Text") %>
+                                                  <% answer = answer.nil? ? "" : answer.answer%>
                                                 <li>
                                                 	<%= text_field_tag "question[#{question.id}]",answer, disabled: true%>
                                                 </li>
@@ -34,11 +35,11 @@
                                                 </li>
                                                 <% elsif question.question_type.name.eql?("Single Choice")%>
                                                 <% question.options.each do |option|%>
-                                                    <% selected = answer.nil? ? false : (answer.to_i == option.id) %>
+                                                    <% selected = answer.nil? ? false : (answer.id.to_i == option.id) %>
 													<li><%= radio_button_tag "question[#{question.id}]", option.id,selected %> <%= option.option_content%></li>
 												<%end%>
                                                 <% elsif question.question_type.name.eql?("Multiple Choice")%>
-                                                    <% answers = answer.nil? ? [] : answer.split(",") %>
+                                                    <% answers = answer.nil? ? [] : answer.answer.split(",") %>
 	                                                <% question.options.each do |option|%>
                                                         <% selected = answers.include?(option.id.to_s) %>
 														<li><%= check_box_tag "question[#{question.id}][]", option.id, selected%> <%= option.option_content%></li>
