@@ -29,7 +29,21 @@
                                         <div class="panel-body">
                                             <div class="task-content">
                                                 <ul class="task-list">
-                                                    <% unless question.is_subjective? %>
+                                                    <% if question.is_subjective? %>
+                                                        <% if question.is_text_type?%>
+                                                            <li>
+                                                                <div class="task-title">
+                                                                    <span class="task-title-sp"><input type="text" disabled="true"/></span>
+                                                                </div>
+                                                            </li>
+                                                        <% else %>
+                                                            <li>
+                                                                <div class="task-title">
+                                                                    <span class="task-title-sp"><textarea class="form-control"  cols="3" rows="3" disabled="true"></textarea></textarea></span>
+                                                                </div>
+                                                            </li>
+                                                        <% end %>
+                                                    <% else %>
                                                         <% question.options.each do |option| %>
                                                             <li>
                                                                 <div class="task-title">
