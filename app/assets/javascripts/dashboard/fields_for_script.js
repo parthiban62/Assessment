@@ -24,19 +24,33 @@ function openPopup(){
 }
 
 function dragdrop(){
-	$(".draggable").draggable({ revert: "valid" });
+	var existing_items = $.map($(".dropzone-container p"), function(n, i){ return n.id;});
+	$('.draggable').draggable({
+	  revert: function() {
+	    if ($(this).hasClass('drag-revert')) {
+	      $(this).removeClass('drag-revert');
+	      return true;
+	    }
+	  }
+	});
 	$(".dropzone-container" ).droppable({
 	    drop: function( event, ui ) {
-	    	var survey_id = $("#survey_id_details").val();
-	        $.ajax({
-	            beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
-	            url: "/surveys/"+survey_id+"/add_questions",
-	            method: 'post',
-	            data: {question_id: $(ui.draggable).attr("id")},
-	            success: function(response){
+	    	if(existing_items.includes($(ui.draggable).attr("id"))){
+	    		alert("Question already exists in the survey");
+	    		return $(ui.draggable).addClass('drag-revert');
+	    	}
+	    	else{
+	    		var survey_id = $("#survey_id_details").val();
+		        $.ajax({
+		            beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+		            url: "/surveys/"+survey_id+"/add_questions",
+		            method: 'post',
+		            data: {question_id: $(ui.draggable).attr("id")},
+		            success: function(response){
 
-	            }
-	        });
+		            }
+		        });
+	    	}
 	    }
 	});
 }

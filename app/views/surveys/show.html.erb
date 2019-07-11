@@ -61,7 +61,7 @@
                         </div>
                         <div class="dropzone-container">
                             <% @survey.questions.each do |question|%>
-                                <p><%= question.question_content%></p>
+                                <p id="<%= question.id%>"><%= question.question_content%></p>
                             <br/>
                             <% end %>
                         </div>
