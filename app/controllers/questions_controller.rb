@@ -24,6 +24,20 @@ class QuestionsController < ApplicationController
 		@question = @survey.questions.find_by_id(params[:id])
 	end
 
+	def update
+		@question = @survey.questions.find_by_id(params[:id])
+		respond_to do |format|
+			if @question.update_attributes(question_params)
+				format.html{ redirect_to survey_path(@survey)}
+				format.js
+			else
+				format.html{ render :new}
+				format.js
+			end
+		end
+	end
+
+
 	def destroy
 		@question = @survey.questions.find_by_id(params[:id])
 		respond_to do |format|

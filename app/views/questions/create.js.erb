@@ -2,4 +2,5 @@
 <% else %>
 $(".questionDetails").html("<%= escape_javascript render(partial:  'surveys/question_details', locals: {survey: @survey }) %>");
 $(".close-popup").click();
+$(".ajax-loader").hide();
 <% end %>

@@ -40,3 +40,11 @@ function dragdrop(){
 	    }
 	});
 }
+
+function showLoader(){
+	$(".ajax-loader").show();
+}
+
+function hideLoader(){
+	$(".ajax-loader").hide();
+}

@@ -68,12 +68,13 @@
                 </div>
                 <div class="questionForm">
     				<div class="modal-body">
-    					<%= form_for([@survey, @question], :html => {class: 'form-horizontal style-form', remote: true}) do |f| %>
+
+    					<%= form_for([@survey, @question], :html => {class: 'form-horizontal style-form question_creation_from', remote: true}) do |f| %>
     						<%= render 'shared/question_fields', f: f %>
     				</div>
     				<div class="modal-footer">
     					<button type="button" class="btn btn-theme02 close-popup" data-dismiss="modal">Close</button>
-    					<button type="submit" class="btn btn-theme02">Save</button>
+    					<button type="submit" class="btn btn-theme02" onclick="showLoader();">Save</button>
     					<% end %>
     				</div>
                 </div>

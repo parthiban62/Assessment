@@ -16,6 +16,9 @@
     </section>
     <section id="main-content">
         <section class="wrapper">
+          <div class="ajax-loader">
+            <img src="/images/ajax-loader.gif" class="img-responsive" />
+          </div>
           <%= flash[:notice]%>
           <%= flash[:error]%>
           <%= yield :layout %>

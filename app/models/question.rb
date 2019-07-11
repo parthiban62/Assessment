@@ -5,6 +5,7 @@ class Question < ApplicationRecord
 	has_many :options, dependent: :destroy
 	accepts_nested_attributes_for :options, allow_destroy: true,  reject_if: proc { |attr| attr['option_content'].blank?}
 
+	default_scope { order(created_at: :asc) }
 
 	validates :question_content, presence: true
 	def is_subjective?
