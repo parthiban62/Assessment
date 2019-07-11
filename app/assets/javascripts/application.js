@@ -13,18 +13,4 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
-//= require_tree .
-
-$(document).ready(function(){
-	function remove_fields(link) {
-	  $(link).prev("input[type=hidden]").val("1");
-	  $(link).closest(".fields").hide();
-	}
-	$('form').on('click', '.add_fields', function(event) {
-      var regexp, time;
-      time = new Date().getTime();
-      regexp = new RegExp($(this).data('id'), 'g');
-      $(this).before($(this).data('fields').replace(regexp, time));
-      return event.preventDefault();
-	});
-});
+//= require dashboard

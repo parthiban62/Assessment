@@ -1,39 +1,45 @@
-<div class="form-group">
-    <div class="col-lg-8">
-        <label class="col-sm-2 col-sm-2 control-label">Question No:</label>
-        <div class="col-sm-10">
-          <%= f.number_field :question_no, class:"form-control", required: true%>
+<div class="fields">
+  <div class="form-group">
+    <div class="row">
+      <div class="col-lg-10">
+        <div class="col-lg-4">
+            <label class="col-sm-2 col-sm-2 control-label">QNo:</label>
+            <div class="col-sm-4">
+              <%= f.number_field :question_no, class:"form-control", required: true%>
+            </div>
         </div>
-    </div>
-</div>
-<div class="form-group">
-    <div class="col-lg-8">
-        <label class="col-sm-2 col-sm-2 control-label">Question Type:</label>
-        <div class="col-sm-10">
-          <%= f.select :question_type_id, options_from_collection_for_select(@question_types, :id, :name), prompt: "select a question type", class:"form-control question_type_id", onchange: "checkOption(this);", required: true%>
+        <div class="col-lg-6">
+          <label class="col-sm-2 col-sm-2 control-label">QType:</label>
+          <div class="col-sm-10">
+            <%= f.select :question_type_id, options_from_collection_for_select(@question_types, :id, :name), prompt: "select a question type", class:"form-control question_type_id", onchange: "checkOption(this);", required: true%>
+          </div>
+          </div>
         </div>
+      </div>
     </div>
-</div>
-<div class="form-group">
-    <div class="col-lg-8">
-        <label class="col-sm-2 col-sm-2 control-label">Question:</label>
-        <div class="col-sm-10">
-          <%#= f.cktext_area :question_content,size: "60x12", class:"form-control", required: true%>
-          <%= f.text_area :question_content,size: "60x12", class:"form-control", required: true%>
-        </div>
-    </div>
+  <div class="form-group">
+      <div class="col-lg-8">
+          <label class="col-sm-2 col-sm-2 control-label">Question:</label>
+          <div class="col-sm-10">
+            <%#= f.cktext_area :question_content,size: "60x12", class:"form-control", required: true%>
+            <%= f.text_area :question_content,size: "40x3", class:"form-control", required: true%>
+          </div>
+      </div>
+  </div>
 </div>
 
 <%= f.fields_for :options do |builder| %>
 	<%= render 'shared/option_fields', f: builder %>
 <% end %>
 
-<div class="form-group questionOption">
-	<div class="col-lg-8">
-		<%#= link_to_add_fields "Add Option", f, :options, 'form-control' %>
-		<!-- <a href="javascript:void(0)" onclick="AddOption(this);">Add Option</a> -->
-		<%= link_to_add_fields "Add Option", f, :options, 'form-control' %>
-	</div>
+<div class="fields">
+  <div class="form-group">
+  	<div class="col-lg-12">
+  		<%#= link_to_add_fields "Add Option", f, :options, 'form-control' %>
+  		<!-- <a href="javascript:void(0)" onclick="AddOption(this);">Add Option</a> -->
+  		<%= link_to_add_fields "Add Option", f, :options, 'form-control' %>
+  	</div>
+  </div>
 </div>
 
 <div class="form-group">
@@ -41,18 +47,3 @@
 		<%#= link_to_remove_fields "Delete Question", f, 'form-control' %>
 	</div>
 </div>
-
-<script type="text/javascript">
-  $(document).ready(function(){
-    function remove_fields(link) {
-      $(link).prev("input[type=hidden]").val("1");
-      $(link).closest(".fields").hide();
-    }
-  });
-	function checkOption(e){
-		var selected = $(e).find(':selected').text();
-		if ((selected == "Text") | (selected == "TextArea")){
-			$('.questionOption').toggle();
-		}
-	}
-</script>
