@@ -27,6 +27,7 @@ class ResponsesController < ApplicationController
 	def show
 		@response = @survey.responses.find_by_id(params[:id])
 		@answers = @response.answers
+		@answers = @answers.map{|x| x[:question_id] = x.answer}
 	end
 
 	private
