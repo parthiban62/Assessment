@@ -24,7 +24,7 @@ function openPopup(){
 }
 
 function dragdrop(){
-	$(".draggable").draggable();
+	$(".draggable").draggable({ revert: "valid" });
 	$(".dropzone-container" ).droppable({
 	    drop: function( event, ui ) {
 	    	var survey_id = $("#survey_id_details").val();

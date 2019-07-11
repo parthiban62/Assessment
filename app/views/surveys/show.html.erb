@@ -60,6 +60,10 @@
                         <% end %>
                         </div>
                         <div class="dropzone-container">
+                            <% @survey.questions.each do |question|%>
+                                <p><%= question.question_content%></p>
+                            <br/>
+                            <% end %>
                         </div>
                     </div>
                     <div class="modal-footer">

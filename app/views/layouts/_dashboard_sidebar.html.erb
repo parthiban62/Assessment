@@ -8,7 +8,7 @@
             <h6 class="centered" style="color: #ffffff;"><%= current_user.email %></h6>
             <li><%= link_to('Logout', destroy_user_session_path, method: :delete, class: "logout") %></li>
             <li class="mt">
-                <a class="<%= session[:current] == 'dashboard' ? 'active' : '' %>" href="<%= root_path %>"><i class="fa fa-dashboard"></i><span>Dashboard</span></a>
+                <a class="<%= session[:current] == 'home' ? 'active' : '' %>" href="<%= root_path %>"><i class="fa fa-dashboard"></i><span>Dashboard</span></a>
             </li>
             <% if  current_user.is_admin? %>
                 <%= render partial: 'layouts/admin_menu' %>
@@ -19,7 +19,7 @@
         <% else %>
             <ul class="sidebar-menu" id="nav-accordion"><
                 <li class="mt">
-                    <a class="<%= session[:current] == 'dashboard' ? 'active' : '' %>" href="<%= root_path %>"><i class="fa fa-dashboard"></i><span>Home</span></a>
+                    <a class="<%= session[:current] == 'home' ? 'active' : '' %>" href="<%= root_path %>"><i class="fa fa-dashboard"></i><span>Home</span></a>
                 </li>
                 <li class="mt">
                     <a class="<%= session[:current] == 'login' ? 'active' : '' %>" href="<%= new_user_session_path %>"><i class="fa fa-dashboard"></i><span>Login</span></a>

@@ -19,6 +19,7 @@ class ResponsesController < ApplicationController
 			@response.answers.create(question_id: key, answer: val.kind_of?(Array) ? val.join(",") : val)
 		end
 		respond_to do |format|
+			flash[:notice] = "Thank you for participating in the survey!!!"
 			format.html{redirect_to survey_response_path(@survey, @response)}
 		end
 	end

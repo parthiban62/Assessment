@@ -19,8 +19,10 @@
           <div class="ajax-loader">
             <img src="/images/ajax-loader.gif" class="img-responsive" />
           </div>
-          <%= flash[:notice]%>
-          <%= flash[:error]%>
+          <div class="notice-info">
+            <p class="success-info"><%= flash[:notice]%></p>
+            <p class="error-info"><%= flash[:error]%></p>
+          </div>
           <%= yield :layout %>
         </section>
     </section>

@@ -1,6 +1,7 @@
 class SurveysController < ApplicationController
 
 	before_action :set_question_types
+	before_action :set_side_bar_tab
 	before_action :set_survey, except: [:index,:new,:create,:participants]
 
 	before_action :check_if_user_is_admin, only: [:participants]
@@ -42,6 +43,7 @@ class SurveysController < ApplicationController
 	def show
 		@question = Question.new
 		@questions = @user.surveys.map(&:questions).flatten
+		flash[:notice] = "Survey Question listing page"
 	end
 
 	def destroy
@@ -59,7 +61,7 @@ class SurveysController < ApplicationController
 	end
 
 	def add_questions
-		@question = Question.find_by_id(params[:id])
+		@question = Question.find_by_id(params[:question_id])
 		@question_added_already = false
 		if @survey.questions.where(id: @question.id).present?
 			@question_added_already = true
@@ -84,5 +86,9 @@ class SurveysController < ApplicationController
 
 	def check_if_user_is_admin
 		redirect_to root_path unless current_user.is_admin?
+	end
+
+	def set_side_bar_tab
+		session[:current] = "surveys"
 	end
 end

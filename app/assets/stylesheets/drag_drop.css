@@ -33,8 +33,7 @@
   cursor: -webkit-grab;
   float: left;
   width: 50%;
-  height: 300px;
-  overflow-y: scroll;
+  height: auto;
   margin-right: 10px;
 }
 
@@ -52,7 +51,7 @@
 .dropzone-container {
   border: 1px solid;
   float: right;
-  height: 300px;
+  height: auto;
   overflow-y: scroll;
   width: 50%;
 }
@@ -102,3 +101,18 @@
   top:50%;
   left:50%;
 }
+
+.notice-info{
+  position: absolute;
+  left: 50%;
+  top: 10%;
+}
+
+.success-info{
+  color: green;
+}
+
+.error-info{
+  color: red;
+}
+
