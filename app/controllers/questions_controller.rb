@@ -28,6 +28,7 @@ class QuestionsController < ApplicationController
 		@question = @survey.questions.find_by_id(params[:id])
 		respond_to do |format|
 			if @question.update_attributes(question_params)
+				flash[:notice] = 'Question updated successfully'
 				format.html{ redirect_to survey_path(@survey)}
 				format.js
 			else
