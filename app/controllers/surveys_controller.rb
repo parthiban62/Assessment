@@ -32,7 +32,6 @@ class SurveysController < ApplicationController
 
 	def update
 		if @survey.update_attributes(survey_params)
-			byebug
 			@existing_questions = @user.questions
 			if @existing_questions.present?
 				@user.questions << @survey.questions.where.not(id: @existing_questions.pluck(:id))
