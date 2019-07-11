@@ -10,6 +10,7 @@ class QuestionsController < ApplicationController
 		respond_to do |format|
 			if @question.save
 				@survey.questions << @question
+				@user.questions << @question
 				format.html{ redirect_to survey_path(@survey)}
 				format.js
 			else

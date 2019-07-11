@@ -47,9 +47,12 @@ function dragdrop(){
 		            method: 'post',
 		            data: {question_id: $(ui.draggable).attr("id")},
 		            success: function(response){
-
 		            }
 		        });
+		        $(ui.draggable).removeClass('draggable');
+		        var ele = $(ui.draggable).detach()
+		        $(ele).removeAttr("class").removeAttr("style")
+		        $(".dropzone-container").append(ele);
 	    	}
 	    }
 	});

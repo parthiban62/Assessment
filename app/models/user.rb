@@ -5,6 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :surveys
+  has_many :user_questions
+  has_many :questions,through: :user_questions
   belongs_to :role
 
   has_many :responses

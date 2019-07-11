@@ -32,6 +32,7 @@ class SurveysController < ApplicationController
 
 	def update
 		if @survey.update_attributes(survey_params)
+			@user.questions << @survey.questions
 			flash[:notice] = 'survey created successfully'
 			redirect_to surveys_path
 		else
@@ -42,7 +43,7 @@ class SurveysController < ApplicationController
 
 	def show
 		@question = Question.new
-		@questions = @user.surveys.map(&:questions).flatten
+		@questions = @user.questions
 		flash[:notice] = "Survey Question listing page"
 	end
 
