@@ -17,8 +17,8 @@ class Survey < ApplicationRecord
 	end
 
 	def add_questions_for_user(user)
-		self.survey_questions.each do |question|
-			user.questions << question unless user.questions.find_by_id(question.id).present?
+		self.survey_questions.each do |survey_question|
+			user.questions << survey_question.question unless user.questions.find_by_id(survey_question.question_id).present?
 		end
 	end
 	
