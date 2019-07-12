@@ -6,6 +6,7 @@ class ResponsesController < ApplicationController
 
 	def new
 		@response = current_user.responses.find_by_survey_id_and_user_id(@survey.id, current_user.id)
+		@survey_questions = @survey.survey_questions.includes(:question)
 		if @response.present?
 			redirect_to survey_response_path(@survey, @response)
 		else
@@ -26,8 +27,8 @@ class ResponsesController < ApplicationController
 
 	def show
 		@response = @survey.responses.find_by_id(params[:id])
-		@questions = @response.questions
 		@answers = @response.answers
+		@survey_questions = @survey.survey_questions.includes(:question).where(question_id: @answers.pluck(:question_id))
 	end
 
 	private

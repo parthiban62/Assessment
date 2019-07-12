@@ -7,6 +7,7 @@ function add_fields(link){
 }
 
 function remove_fields(link) {
+  $(link).prev().prev().removeAttr("required");
   $(link).prev("input[type=hidden]").val("1");
   $(link).closest('.fields').hide();
   return event.preventDefault();
@@ -64,4 +65,14 @@ function showLoader(){
 
 function hideLoader(){
 	$(".ajax-loader").hide();
+}
+
+function confirmResponse(){
+	$(".SurveyResponseConfirmation").modal();
+}
+
+function SubmitResponse(){
+	$(".close-popup").click();
+	$(".response-submit").attr("disabled", true)
+	$("form.response_survey_form").submit();
 }

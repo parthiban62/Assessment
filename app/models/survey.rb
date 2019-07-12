@@ -9,5 +9,11 @@ class Survey < ApplicationRecord
 	validates :name, presence: true
 
 	default_scope { order(created_at: :asc) }
+
+	def auto_generate_question_numbers
+		self.survey_questions.each_with_index do |survey_question,index|
+			survey_question.update_column("question_no", index+=1)
+		end
+	end
 	
 end

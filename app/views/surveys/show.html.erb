@@ -9,7 +9,7 @@
                     <a class="btn btn-theme02" href="<%= edit_survey_path(@survey) %>">Edit Survey</a>
                 </div>
                 <div class="col-lg-2 pull-right">
-                    <button type="button" class="btn btn-theme02" onclick="openPopup();">Add Question</button>
+                    <%= link_to "Add Question", new_survey_question_path(@survey), class: "btn btn-theme02", remote: true %>
                 </div>
             </div>
             <div class="row">
@@ -37,52 +37,7 @@
 </div>
 
 <div class="questionDetails">
-<%= render partial: 'question_details', locals: {survey: @survey}%>
+<%= render partial: 'question_details', locals: {survey: @survey, survey_questions: @survey_questions}%>
 </div>
 
-
-<div id="myModal" class="modal fade row" role="dialog">
-	<div class="col-lg-12">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title">Add Question</h4>
-				</div>
-                <input type="hidden" id="survey_id_details" value="<%= @survey.id%>"/>
-                <a href="javascript:void(0);"" onclick="toggleContainer();">Drag and Drop Question</a> / <a href="javascript:void(0);"" onclick="toggleContainer();">Type & Add Question</a>
-                
-                <div class= "dragDropQuestion" style="display:none;">
-                    <div class="popupContainer" >
-                        <div class="draggable-container">
-                        <% @questions.each do |question|%>
-                          <p class="draggable" id="<%= question.id%>"><%= question.question_content%></p>
-                          <br/>
-                        <% end %>
-                        </div>
-                        <div class="dropzone-container">
-                            <% @survey.questions.each do |question|%>
-                                <p id="<%= question.id%>"><%= question.question_content%></p>
-                            <br/>
-                            <% end %>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-theme02 close-popup" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-                <div class="questionForm">
-    				<div class="modal-body">
-
-    					<%= form_for([@survey, @question], :html => {class: 'form-horizontal style-form question_creation_from', remote: true}) do |f| %>
-    						<%= render 'shared/question_fields', f: f %>
-    				</div>
-    				<div class="modal-footer">
-    					<button type="button" class="btn btn-theme02 close-popup" data-dismiss="modal">Close</button>
-    					<button type="submit" class="btn btn-theme02">Save</button>
-    					<% end %>
-    				</div>
-                </div>
-			</div>
-		</div>
-	</div>
-</div>
+<div class="popupcode"></div>

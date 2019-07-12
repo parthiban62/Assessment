@@ -18,4 +18,9 @@ class Question < ApplicationRecord
 	def is_text_type?
 		question_type.name.eql?("Text")
 	end
+
+	def find_question_number(survey)
+		survey_questions.find_by_survey_id(survey.id).question_no
+	end
+
 end

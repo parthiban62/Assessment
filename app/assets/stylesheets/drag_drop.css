@@ -116,3 +116,10 @@
   color: red;
 }
 
+.SurveyResponseConfirmation{
+  top: 200px;
+}
+
+.SurveyResponseConfirmation > .modal-dialog{
+  width: 360px !important;
+}

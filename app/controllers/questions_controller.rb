@@ -2,6 +2,8 @@ class QuestionsController < ApplicationController
 	before_action :set_survey
 
 	def new
+		@question_types = QuestionType.all
+		@questions = @user.questions
 		@question = @survey.questions.build
 	end
 
@@ -11,6 +13,7 @@ class QuestionsController < ApplicationController
 			if @question.save
 				@survey.questions << @question
 				@user.questions << @question
+				@survey.auto_generate_question_numbers
 				format.html{ redirect_to survey_path(@survey)}
 				format.js
 			else
@@ -29,6 +32,7 @@ class QuestionsController < ApplicationController
 		@question = @survey.questions.find_by_id(params[:id])
 		respond_to do |format|
 			if @question.update_attributes(question_params)
+				@survey.auto_generate_question_numbers
 				flash[:notice] = 'Question updated successfully'
 				format.html{ redirect_to survey_path(@survey)}
 				format.js

@@ -38,6 +38,7 @@ class SurveysController < ApplicationController
 			else
 				@user.questions << @survey.questions
 			end
+			@survey.auto_generate_question_numbers
 			flash[:notice] = 'survey created successfully'
 			redirect_to surveys_path
 		else
@@ -49,7 +50,7 @@ class SurveysController < ApplicationController
 	def show
 		@question = Question.new
 		@questions = @user.questions
-		flash[:notice] = "Survey Question listing page"
+		@survey_questions = @survey.survey_questions.includes(:question)
 	end
 
 	def destroy
