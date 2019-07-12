@@ -32,7 +32,7 @@ class SurveysController < ApplicationController
 
 	def update
 		if @survey.update_attributes(survey_params)
-			@survey.add_questions_for_user
+			@survey.add_questions_for_user(@user)
 			@survey.auto_generate_question_numbers
 			flash[:notice] = 'survey created successfully'
 			redirect_to surveys_path
