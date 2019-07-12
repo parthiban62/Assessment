@@ -48,6 +48,7 @@ class QuestionsController < ApplicationController
 		@question = @survey.questions.find_by_id(params[:id])
 		respond_to do |format|
 			if @question.destroy
+				@survey.auto_generate_question_numbers
 				format.html{ redirect_to survey_path(@survey)}
 				format.js
 			else
