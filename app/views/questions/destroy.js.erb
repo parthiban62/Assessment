@@ -1,1 +1,1 @@
-$(".questionDetails").html("<%= escape_javascript render(partial:  'surveys/question_details', locals: {survey: @survey }) %>");
+$(".questionDetails").html("<%= escape_javascript render(partial:  'surveys/question_details', locals: {survey: @survey, survey_questions: @survey_questions }) %>");

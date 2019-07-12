@@ -65,6 +65,7 @@ class SurveysController < ApplicationController
 	def add_questions
 		@question = Question.find_by_id(params[:question_id])
 		@question_added_already = false
+		@survey_questions = @survey.survey_questions.includes(:question)
 		if @survey.questions.where(id: @question.id).present?
 			@question_added_already = true
 		else

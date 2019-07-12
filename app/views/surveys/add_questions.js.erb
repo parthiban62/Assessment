@@ -2,6 +2,6 @@
  alert("Question already exists in survey");
 <% else %>
 $(".draggable-container p#"+'<%= @question.id%>').removeClass("draggable");
-$(".questionDetails").html("<%= escape_javascript render(partial:  'question_details', locals: {survey: @survey }) %>");
+$(".questionDetails").html("<%= escape_javascript render(partial:  'question_details', locals: {survey: @survey, survey_questions: @survey_questions }) %>");
 alert("Question Added to Survey");
 <% end %>

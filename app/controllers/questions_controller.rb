@@ -9,6 +9,7 @@ class QuestionsController < ApplicationController
 
 	def create
 		@question = @survey.questions.build(question_params)
+		@survey_questions = @survey.survey_questions.includes(:question)
 		respond_to do |format|
 			if @question.save
 				@survey.questions << @question
@@ -46,6 +47,7 @@ class QuestionsController < ApplicationController
 
 	def destroy
 		@question = @survey.questions.find_by_id(params[:id])
+		@survey_questions = @survey.survey_questions.includes(:question)
 		respond_to do |format|
 			if @question.destroy
 				@survey.auto_generate_question_numbers
