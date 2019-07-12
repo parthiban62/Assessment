@@ -1,5 +1,6 @@
 <% if @question.errors.present? %>
 <% else %>
+alert("Question added successfully");
 $(".questionDetails").html("<%= escape_javascript render(partial:  'surveys/question_details', locals: {survey: @survey, survey_questions: @survey_questions }) %>");
 $(".close-popup").click();
 $(".ajax-loader").hide();
