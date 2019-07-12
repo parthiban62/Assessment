@@ -50,9 +50,9 @@
                         <% if @surveys.empty? %>
                             <tr> No data available </tr>
                         <% else %>
-                            <% @surveys.each do |response| %>
+                            <% @surveys.each_with_index do |response,index| %>
                                 <tr>
-                                    <td><%= response.survey.id %></td>
+                                    <td><%= index+=1 %></td>
                                     <td><%= response.survey.name %></td>
                                     <td><%= link_to "View", survey_response_path(response.survey, response) %> </td>
                                 </tr>

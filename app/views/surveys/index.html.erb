@@ -18,9 +18,9 @@
                     <% if @surveys.empty? %>
                         <tr> No data available </tr>
                     <% else %>
-                        <% @surveys.each do |survey| %>
+                        <% @surveys.each_with_index do |survey,index| %>
                             <tr>
-                                <td><%= survey.id %></td>
+                                <td><%= index+=1 %></td>
                                 <td><%= survey.name %></td>
                                 <td><%= link_to "View", survey_path(survey) %> / <%= link_to "Edit", edit_survey_path(survey) %> / <%= link_to "Delete", survey_path(survey), method: :delete, data: { confirm: 'Are you sure?' } %></td>
                                 <td><%= link_to "Share Via Email", survey_shares_path(survey) %></td>
