@@ -123,3 +123,7 @@
 .SurveyResponseConfirmation > .modal-dialog{
   width: 360px !important;
 }
+
+.pop_up_link_txt{
+  margin:10px;
+}
