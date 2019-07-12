@@ -15,5 +15,11 @@ class Survey < ApplicationRecord
 			survey_question.update_column("question_no", index+=1)
 		end
 	end
+
+	def add_questions_for_user(user)
+		self.survey_questions.each do |question|
+			user.questions << question unless user.questions.find_by_id(question.id).present?
+		end
+	end
 	
 end

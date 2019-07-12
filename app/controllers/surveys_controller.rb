@@ -32,12 +32,7 @@ class SurveysController < ApplicationController
 
 	def update
 		if @survey.update_attributes(survey_params)
-			@existing_questions = @user.questions
-			if @existing_questions.present?
-				@user.questions << @survey.questions.where.not(id: @existing_questions.pluck(:id))
-			else
-				@user.questions << @survey.questions
-			end
+			@survey.add_questions_for_user
 			@survey.auto_generate_question_numbers
 			flash[:notice] = 'survey created successfully'
 			redirect_to surveys_path
