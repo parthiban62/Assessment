@@ -18,7 +18,7 @@ class SurveysController < ApplicationController
 	def create
 		@survey = @user.surveys.build(survey_params)
 		if @survey.save
-			flash[:notice] = 'survey created successfully'
+			flash[:notice] = 'Survey created successfully'
 			redirect_to surveys_path
 		else
 			@errors = @survey.errors
@@ -34,7 +34,7 @@ class SurveysController < ApplicationController
 		if @survey.update_attributes(survey_params)
 			@survey.add_questions_for_user(@user)
 			@survey.auto_generate_question_numbers
-			flash[:notice] = 'survey created successfully'
+			flash[:notice] = 'Survey updated successfully'
 			redirect_to surveys_path
 		else
 			@errors = @survey.errors

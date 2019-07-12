@@ -31,12 +31,13 @@
                                                 	<%= text_field_tag "question[#{question.id}]",answer, disabled: true%>
                                                 </li>
                                                 <% elsif question.question_type.name.eql?("TextArea")%>
+                                                <% answer = answer.nil? ? "" : answer.answer%>
                                                 <li>
                                                 	<%= text_area_tag "question[#{question.id}]",answer, disabled: true%>
                                                 </li>
                                                 <% elsif question.question_type.name.eql?("Single Choice")%>
                                                 <% question.options.each do |option|%>
-                                                    <% selected = answer.nil? ? false : (answer.id.to_i == option.id) %>
+                                                    <% selected = answer.nil? ? false : (answer.answer.to_i == option.id) %>
 													<li><%= radio_button_tag "question[#{question.id}]", option.id,selected %> <%= option.option_content%></li>
 												<%end%>
                                                 <% elsif question.question_type.name.eql?("Multiple Choice")%>
