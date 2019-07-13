@@ -47,7 +47,7 @@
 														<li><%= check_box_tag "question[#{question.id}][]", option.id, selected%> <%= option.option_content%></li>
 													<%end%>
                                                 <% elsif question.question_type.name.eql?("Listing")%>
-                                                	<li><%= select_tag "question[#{question.id}]", options_from_collection_for_select(question.options, :id, :option_content, selected: answer),prompt: "Select any one"%></li>
+                                                	<li><%= select_tag "question[#{question.id}]", options_from_collection_for_select(question.options, :id, :option_content, selected: answer.answer),prompt: "Select any one"%></li>
                                               <% end %>
                                             </ul>
                                         </div>
