@@ -49,7 +49,7 @@ site_user4.save
 
 survey1 = site_user1.surveys.create(name: "About our Product")
 
-survey_question_1 = Question.new(question_no: 1,question_content: "Have you ever purchased our product?")
+survey_question_1 = Question.new(question_content: "Have you ever purchased our product?")
 survey_question_1.question_type = single_choice
 survey_question_1.options.build(option_content: "Yes")
 survey_question_1.options.build(option_content: "No")
@@ -57,7 +57,7 @@ survey_question_1.save
 survey1.questions << survey_question_1
 
 
-survey_question_2 = Question.new(question_no: 1,question_content: "How would you came to know about our product")
+survey_question_2 = Question.new(question_content: "How would you came to know about our product")
 survey_question_2.question_type = multiple_choice
 survey_question_2.options.build(option_content: "Newspaper")
 survey_question_2.options.build(option_content: "Internet")
@@ -68,7 +68,7 @@ survey_question_2.save
 survey1.questions << survey_question_2
 
 
-survey_question_3 = Question.new(question_no: 1,question_content: "How likely are you to use our service?")
+survey_question_3 = Question.new(question_content: "How likely are you to use our service?")
 survey_question_3.question_type = listing_type
 survey_question_3.options.build(option_content: "Extremly Unsatisfied")
 survey_question_3.options.build(option_content: "Unsatisfied")
@@ -80,14 +80,14 @@ survey1.questions << survey_question_3
 
 
 
-survey_question_3 = Question.new(question_no: 1,question_content: "Tell us about your nature of job?")
+survey_question_3 = Question.new(question_content: "Tell us about your nature of job?")
 survey_question_3.question_type = text_area_type
 survey_question_3.save
 survey1.questions << survey_question_3
 
 
 
-survey_question_4 = Question.new(question_no: 1,question_content: "Would You recommend this product to your friends?")
+survey_question_4 = Question.new(question_content: "Would You recommend this product to your friends?")
 survey_question_4.question_type = single_choice
 survey_question_4.options.build(option_content: "Yes")
 survey_question_4.options.build(option_content: "No")
@@ -95,11 +95,15 @@ survey_question_4.save
 survey1.questions << survey_question_4
 
 
-survey_question_5 = Question.new(question_no: 1,question_content: "How much time do you spend in Internet per day?")
+survey_question_5 = Question.new(question_content: "How much time do you spend in Internet per day?")
 survey_question_5.question_type = input_type
 survey_question_5.save
 survey1.questions << survey_question_5
 
+
+
+survey1.auto_generate_question_numbers
+survey1.add_questions_for_user(site_user1)
 
 
 survey1.shares.create(email: site_user2.email)
