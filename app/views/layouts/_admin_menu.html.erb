@@ -1,3 +1,6 @@
 <li class="mt">
-  <a class="<%= session[:current] == 'profile' ? 'active' : '' %>" href="<%= edit_registration_path(current_user) %>"><i class="fa fa-desktop"></i><span>View Profile</span></a>
+    <a class="<%= (controller_name == 'home' || controller_name == 'surveys' || controller_name == 'responses') ? 'active' : '' %>" href="<%= root_path %>"><i class="fa fa-dashboard"></i><span>Dashboard</span></a>
+</li>
+<li class="mt">
+  <a class="<%= controller_name == 'registrations' ? 'active' : '' %>" href="<%= edit_registration_path(current_user) %>"><i class="fa fa-desktop"></i><span>View Profile</span></a>
 </li>
